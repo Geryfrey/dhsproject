@@ -2,18 +2,18 @@
 
 import { useState, useMemo } from 'react'
 import { useQueries } from '@tanstack/react-query'
-import { Plus, X, ChevronDown, BarChart2, AlertCircle } from 'lucide-react'
+import { Plus, X, ChevronDown, BarChart2 } from 'lucide-react'
 import { fetchIndicator } from '@/lib/api'
 import { PROVINCES } from '@/lib/types'
 import { CHAPTERS } from '@/lib/chapters'
 import { fmtNum, cn } from '@/lib/utils'
-import ChartContainer, { ChartTypeSelector, CHART_COLORS } from './charts/ChartContainer'
-import type { ChartType } from './charts/ChartContainer'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  ReferenceLine, Legend, Cell
+  Legend
 } from 'recharts'
 import Header from './layout/Header'
+import RwandaMap from './charts/RwandaMap'
+import VertBarChart from './charts/VertBarChart'
 
 interface SelectedIndicator {
   id: string
@@ -48,7 +48,6 @@ export default function CompareClient() {
   const [addChapter, setAddChapter] = useState(CHAPTERS[0].slug)
   const [addIndicator, setAddIndicator] = useState(CHAPTERS[0].indicators[0].id)
   const [addParams, setAddParams] = useState<Record<string, string>>({})
-  const [chartType, setChartType] = useState<ChartType>('bar-h')
   const [compareMode, setCompareMode] = useState<'province' | 'indicator'>('province')
 
   const chapter = CHAPTERS.find(c => c.slug === addChapter)!
@@ -192,19 +191,18 @@ export default function CompareClient() {
         {selectedIndicators.length > 0 && (
           <>
             {/* Chart controls */}
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-2 rounded-lg border border-slate-200 p-1">
+            {selectedIndicators.length > 1 && (
+              <div className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white p-1 w-fit">
                 <button onClick={() => setCompareMode('province')}
-                  className={cn('rounded-md px-3 py-1.5 text-xs font-medium transition-all', compareMode === 'province' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500 hover:text-slate-700')}>
+                  className={cn('rounded-md px-3 py-1.5 text-xs font-medium transition-all', compareMode === 'province' ? 'bg-nisr-navy text-white shadow-sm' : 'text-slate-500 hover:text-slate-700')}>
                   By Province
                 </button>
                 <button onClick={() => setCompareMode('indicator')}
-                  className={cn('rounded-md px-3 py-1.5 text-xs font-medium transition-all', compareMode === 'indicator' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500 hover:text-slate-700')}>
+                  className={cn('rounded-md px-3 py-1.5 text-xs font-medium transition-all', compareMode === 'indicator' ? 'bg-nisr-navy text-white shadow-sm' : 'text-slate-500 hover:text-slate-700')}>
                   By Indicator
                 </button>
               </div>
-              <ChartTypeSelector value={chartType} onChange={setChartType} />
-            </div>
+            )}
 
             {/* Grouped comparison chart */}
             {selectedIndicators.length > 1 && compareMode === 'province' && (
@@ -249,37 +247,47 @@ export default function CompareClient() {
             )}
 
             {/* Individual indicator charts */}
-            <div className={cn('grid gap-6', indicatorData.length === 1 ? 'grid-cols-1' : 'grid-cols-1 xl:grid-cols-2')}>
+            <div className="grid gap-6 grid-cols-1">
               {indicatorData.map(ind => (
-                <div key={ind.id} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-                  <div className="mb-3 flex items-start justify-between gap-3">
+                <div key={ind.id} className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <div className="mb-4 flex items-start justify-between gap-3">
                     <div className="flex items-start gap-2">
                       <span className="mt-1 h-3 w-3 rounded-full flex-shrink-0" style={{ background: ind.color }} />
                       <div>
-                        <h3 className="text-sm font-semibold text-slate-900">{ind.indicatorName}</h3>
-                        <p className="text-xs text-slate-500">{ind.chapterTitle}</p>
+                        <h3 className="text-base font-semibold text-slate-900">{ind.indicatorName}</h3>
+                        <p className="text-xs text-slate-500 mt-0.5">{ind.chapterTitle}</p>
                       </div>
                     </div>
                     {ind.national != null && (
-                      <span className="shrink-0 rounded-full bg-red-50 px-2 py-0.5 text-xs font-semibold text-red-700">
+                      <span className="shrink-0 rounded-full bg-red-50 px-2.5 py-1 text-xs font-semibold text-red-700">
                         National: {fmt(ind.national, ind.unit)}
                       </span>
                     )}
                   </div>
                   {ind.isLoading ? (
-                    <div className="flex h-40 items-center justify-center">
-                      <div className="flex gap-1.5">{[0, 1, 2].map(i => <span key={i} className="h-2 w-2 animate-bounce rounded-full bg-rwanda-green" style={{ animationDelay: `${i * 0.15}s` }} />)}</div>
+                    <div className="flex h-64 items-center justify-center">
+                      <div className="flex gap-1.5">{[0, 1, 2].map(i => <span key={i} className="h-2 w-2 animate-bounce rounded-full bg-nisr-navy" style={{ animationDelay: `${i * 0.15}s` }} />)}</div>
                     </div>
                   ) : (
-                    <ChartContainer
-                      data={ind.provData}
-                      national={ind.national}
-                      unit={ind.unit}
-                      indicator={ind.indicatorName}
-                      chartType={chartType}
-                      colors={[ind.color]}
-                      height={220}
-                    />
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                      <div>
+                        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-400 text-center">Rwanda Provinces Map</p>
+                        <RwandaMap
+                          data={ind.provData}
+                          unit={ind.unit}
+                          national={ind.national}
+                        />
+                      </div>
+                      <div>
+                        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-400 text-center">Province Comparison</p>
+                        <VertBarChart
+                          data={ind.provData}
+                          national={ind.national}
+                          unit={ind.unit}
+                          indicator={ind.indicatorName}
+                        />
+                      </div>
+                    </div>
                   )}
                 </div>
               ))}
