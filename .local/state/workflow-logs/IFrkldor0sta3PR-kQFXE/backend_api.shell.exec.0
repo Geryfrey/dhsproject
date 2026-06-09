@@ -1,9 +1,0 @@
-[32mINFO[0m:     Started server process [[36m65[0m]
-[32mINFO[0m:     Waiting for application startup.
-[32mINFO[0m:     Application startup complete.
-[32mINFO[0m:     Uvicorn running on [1mhttp://127.0.0.1:8000[0m (Press CTRL+C to quit)
-[32mINFO[0m:     127.0.0.1:43644 - "[1mGET /chapter10/decision-making?decision_type=all_three&region=1 HTTP/1.1[0m" [32m200 OK[0m
-[32mINFO[0m:     127.0.0.1:43658 - "[1mGET /chapter10/decision-making?decision_type=all_three&region=2 HTTP/1.1[0m" [32m200 OK[0m
-[32mINFO[0m:     127.0.0.1:43664 - "[1mGET /chapter10/decision-making?decision_type=all_three&region=3 HTTP/1.1[0m" [32m200 OK[0m
-[32mINFO[0m:     127.0.0.1:43676 - "[1mGET /chapter10/decision-making?decision_type=all_three&region=4 HTTP/1.1[0m" [32m200 OK[0m
-[32mINFO[0m:     127.0.0.1:43686 - "[1mGET /chapter10/decision-making?decision_type=all_three&region=5 HTTP/1.1[0m" [32m200 OK[0m

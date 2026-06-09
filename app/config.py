@@ -95,9 +95,25 @@ Provides statistical indicators organized by thematic chapters.
 API_VERSION = "1.0.0"
 
 # CORS settings (for frontend integration)
-CORS_ORIGINS = [
-    "http://localhost:3000",  # React/Vue dev server
-    "http://localhost:8080",  # Alternative frontend
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:8080",
-]
+def _build_cors_origins() -> list[str]:
+    origins = [
+        "http://localhost:3000",
+        "http://localhost:5000",
+        "http://localhost:8000",
+        "http://localhost:8080",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:5000",
+        "http://127.0.0.1:8000",
+        "http://127.0.0.1:8080",
+    ]
+    replit_domain = os.environ.get("REPLIT_DEV_DOMAIN")
+    if replit_domain:
+        origins.append(f"https://{replit_domain}")
+    replit_domains = os.environ.get("REPLIT_DOMAINS", "")
+    for d in replit_domains.split(","):
+        d = d.strip()
+        if d:
+            origins.append(f"https://{d}")
+    return origins
+
+CORS_ORIGINS = _build_cors_origins()

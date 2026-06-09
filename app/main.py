@@ -200,6 +200,21 @@ async def get_available_indicators():
 
 
 # Custom exception handler
+@app.exception_handler(FileNotFoundError)
+async def file_not_found_handler(request, exc):
+    """
+    Handle missing DHS data files with a clear message.
+    """
+    return JSONResponse(
+        status_code=503,
+        content={
+            "error": "Data Unavailable",
+            "message": "Survey data files are not loaded. Please add the DHS .DTA files to the DHS/data/ directory.",
+            "path": str(request.url)
+        }
+    )
+
+
 @app.exception_handler(Exception)
 async def global_exception_handler(request, exc):
     """
