@@ -72,7 +72,7 @@ export const CHAPTERS: ChapterConfig[] = [
       {
         id: 'education-secondary',
         name: 'Secondary Education',
-        path: '/chapter2/education',
+        path: '/chapter2/education-women',
         fixedParams: { indicator: 'secondary' },
         dynamicParams: [
           {
@@ -91,7 +91,7 @@ export const CHAPTERS: ChapterConfig[] = [
       {
         id: 'education-higher',
         name: 'Higher Education',
-        path: '/chapter2/education',
+        path: '/chapter2/education-women',
         fixedParams: { indicator: 'higher' },
         dynamicParams: [
           {
@@ -130,7 +130,7 @@ export const CHAPTERS: ChapterConfig[] = [
       {
         id: 'insurance',
         name: 'Health Insurance',
-        path: '/chapter2/insurance',
+        path: '/chapter2/health-insurance',
         fixedParams: {},
         description: 'Percentage of women 15-49 covered by health insurance.',
       },
@@ -187,7 +187,7 @@ export const CHAPTERS: ChapterConfig[] = [
       {
         id: 'marital-status',
         name: 'Marital Status',
-        path: '/chapter3/marital-status',
+        path: '/chapter2/marital-status',
         fixedParams: {},
         dynamicParams: [
           {
@@ -810,7 +810,7 @@ export const CHAPTERS: ChapterConfig[] = [
       {
         id: 'earnings-control',
         name: "Control of Women's Earnings",
-        path: '/chapter10/women-earnings-control',
+        path: '/chapter10/earnings-control-women',
         fixedParams: {},
         dynamicParams: [
           {
@@ -829,7 +829,7 @@ export const CHAPTERS: ChapterConfig[] = [
       {
         id: 'earnings-comparison',
         name: "Earnings Comparison",
-        path: '/chapter10/earnings-comparison',
+        path: '/chapter10/earnings-control-men',
         fixedParams: {},
         dynamicParams: [
           {

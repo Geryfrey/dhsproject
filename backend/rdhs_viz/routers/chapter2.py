@@ -18,10 +18,10 @@ router = APIRouter(
 )
 async def get_education_women(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Secondary", description="Education level: No education, Primary, Secondary, Higher"),
 ):
-    return await build_indicator_response("2.1 Education (Women)", year, province_id, data_label)
+    return await build_indicator_response("2.1 Education (Women)", year, region, data_label)
 
 
 @router.get(
@@ -32,10 +32,10 @@ async def get_education_women(
 )
 async def get_education_men(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Secondary", description="Education level: No education, Primary, Secondary, Higher"),
 ):
-    return await build_indicator_response("2.1 Education (Men)", year, province_id, data_label)
+    return await build_indicator_response("2.1 Education (Men)", year, region, data_label)
 
 
 @router.get(
@@ -46,10 +46,10 @@ async def get_education_men(
 )
 async def get_birth_registration(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Total", description="Demographic breakdown"),
 ):
-    return await build_indicator_response("2.2 Birth Registration", year, province_id, data_label)
+    return await build_indicator_response("2.2 Birth Registration", year, region, data_label)
 
 
 @router.get(
@@ -60,10 +60,10 @@ async def get_birth_registration(
 )
 async def get_orphanhood(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Total", description="Demographic breakdown"),
 ):
-    return await build_indicator_response("2.3 Orphanhood", year, province_id, data_label)
+    return await build_indicator_response("2.3 Orphanhood", year, region, data_label)
 
 
 @router.get(
@@ -74,10 +74,10 @@ async def get_orphanhood(
 )
 async def get_health_insurance(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Women", description="Population: Women, Men"),
 ):
-    return await build_indicator_response("2.4 Health Insurance", year, province_id, data_label)
+    return await build_indicator_response("2.4 Health Insurance", year, region, data_label)
 
 
 @router.get(
@@ -88,10 +88,10 @@ async def get_health_insurance(
 )
 async def get_media_exposure(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
-    data_label: str = Query("Women", description="Population: Women, Men"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
+    data_label: str = Query("Radio (Women)", description="e.g. Radio (Women), TV (Women), Newspaper (Women), Radio (Men)"),
 ):
-    return await build_indicator_response("2.5 Media Exposure", year, province_id, data_label)
+    return await build_indicator_response("2.5 Media Exposure", year, region, data_label)
 
 
 @router.get(
@@ -102,7 +102,7 @@ async def get_media_exposure(
 )
 async def get_marital_status(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Married", description="Status: Never married, Married, Living together, Widowed, Divorced, Separated"),
 ):
-    return await build_indicator_response("2.6 Marital Status (Women)", year, province_id, data_label)
+    return await build_indicator_response("2.6 Marital Status (Women)", year, region, data_label)

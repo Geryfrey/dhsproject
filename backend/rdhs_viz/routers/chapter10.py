@@ -18,10 +18,10 @@ router = APIRouter(
 )
 async def get_earnings_control_women(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Total", description="Demographic breakdown"),
 ):
-    return await build_indicator_response("10.1 Control Women's Earnings", year, province_id, data_label)
+    return await build_indicator_response("10.1 Control Women's Earnings", year, region, data_label)
 
 
 @router.get(
@@ -32,10 +32,10 @@ async def get_earnings_control_women(
 )
 async def get_earnings_control_men(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Total", description="Demographic breakdown"),
 ):
-    return await build_indicator_response("10.2 Control Men's Earnings", year, province_id, data_label)
+    return await build_indicator_response("10.2 Control Men's Earnings", year, region, data_label)
 
 
 @router.get(
@@ -46,10 +46,10 @@ async def get_earnings_control_men(
 )
 async def get_decision_making(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Total", description="Demographic breakdown"),
 ):
-    return await build_indicator_response("10.3 Decision Making", year, province_id, data_label)
+    return await build_indicator_response("10.3 Decision Making", year, region, data_label)
 
 
 @router.get(
@@ -60,7 +60,7 @@ async def get_decision_making(
 )
 async def get_attitude_violence(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Total", description="Demographic breakdown"),
 ):
-    return await build_indicator_response("10.4 Wife Beating Justified", year, province_id, data_label)
+    return await build_indicator_response("10.4 Wife Beating Justified", year, region, data_label)

@@ -46,13 +46,13 @@ def _fetch_values(indicator_id: int, year: int, data_label: str, province_name: 
 async def build_indicator_response(
     indicator_name: str,
     year: int | None = None,
-    province_id: int | None = None,
+    region: int | None = None,
     data_label: str = "Total",
 ) -> IndicatorResponse:
     # Translate DHS province code (1–5) to province name for DB lookup
-    province_name = _province_name(province_id) if province_id is not None else None
-    if province_id is not None and province_name is None:
-        raise HTTPException(status_code=422, detail=f"Invalid province_id {province_id}. Use 1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern.")
+    province_name = _province_name(region) if region is not None else None
+    if region is not None and province_name is None:
+        raise HTTPException(status_code=422, detail=f"Invalid region {region}. Use 1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern.")
 
     indicator = await _fetch_indicator(indicator_name)
     if indicator is None:

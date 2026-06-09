@@ -10,43 +10,78 @@ router = APIRouter(
 )
 
 
-@router.get(
-    "/contraception-use",
-    response_model=IndicatorResponse,
-    summary="4.1 Current Contraceptive Use",
-    description="Percentage of currently married women using any contraceptive method (mCPR). Use `data_label` to select method type (Total, Modern, Traditional).",
-)
+@router.get("/contraception-use", response_model=IndicatorResponse)
 async def get_contraception_use(
-    year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
-    data_label: str = Query("Modern", description="Method type: Total, Modern, Traditional"),
+    year: Optional[int] = Query(None),
+    region: Optional[int] = Query(None, ge=1, le=5),
+    data_label: str = Query("Modern Method"),
+    method: str = Query("any"),
 ):
-    return await build_indicator_response("4.1 Current Contraception", year, province_id, data_label)
+    label_map = {
+        "any": "Any Method",
+        "modern": "Modern Method",
+        "traditional": "Any Method",
+    }
+    resolved = label_map.get(method, data_label)
+    return await build_indicator_response("4.1 Current Contraception", year, region, resolved)
 
 
-@router.get(
-    "/fp-demand",
-    response_model=IndicatorResponse,
-    summary="4.2 Demand for Family Planning Satisfied",
-    description="Percentage of demand for family planning satisfied with modern methods.",
-)
+@router.get("/fp-demand", response_model=IndicatorResponse)
 async def get_fp_demand(
-    year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
-    data_label: str = Query("Total", description="Demographic breakdown"),
+    year: Optional[int] = Query(None),
+    region: Optional[int] = Query(None, ge=1, le=5),
+    data_label: str = Query("Total"),
 ):
-    return await build_indicator_response("4.2 Demand for FP", year, province_id, data_label)
+    return await build_indicator_response("4.2 Demand for FP", year, region, data_label)
 
 
-@router.get(
-    "/fp-messages",
-    response_model=IndicatorResponse,
-    summary="4.3 Exposure to Family Planning Messages",
-    description="Percentage of women exposed to family planning messages through any media channel.",
-)
+@router.get("/unmet-need", response_model=IndicatorResponse)
+async def get_unmet_need(
+    year: Optional[int] = Query(None),
+    region: Optional[int] = Query(None, ge=1, le=5),
+    data_label: str = Query("Total"),
+):
+    return await build_indicator_response("4.2 Demand for FP", year, region, data_label)
+
+
+@router.get("/demand-satisfied", response_model=IndicatorResponse)
+async def get_demand_satisfied(
+    year: Optional[int] = Query(None),
+    region: Optional[int] = Query(None, ge=1, le=5),
+    data_label: str = Query("Total"),
+):
+    return await build_indicator_response("4.2 Demand for FP", year, region, data_label)
+
+
+@router.get("/fp-messages", response_model=IndicatorResponse)
 async def get_fp_messages(
-    year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
-    data_label: str = Query("Total", description="Demographic breakdown"),
+    year: Optional[int] = Query(None),
+    region: Optional[int] = Query(None, ge=1, le=5),
+    data_label: str = Query("Radio"),
+    source: str = Query("any"),
 ):
-    return await build_indicator_response("4.3 Exposure to Messages", year, province_id, data_label)
+    label_map = {
+        "any": "Radio",
+        "radio": "Radio",
+        "tv": "TV",
+        "health_worker": "Mobile",
+    }
+    resolved = label_map.get(source, data_label)
+    return await build_indicator_response("4.3 Exposure to Messages", year, region, resolved)
+
+
+@router.get("/fp-exposure", response_model=IndicatorResponse)
+async def get_fp_exposure(
+    year: Optional[int] = Query(None),
+    region: Optional[int] = Query(None, ge=1, le=5),
+    data_label: str = Query("Radio"),
+    source: str = Query("any"),
+):
+    label_map = {
+        "any": "Radio",
+        "radio": "Radio",
+        "tv": "TV",
+        "health_worker": "Mobile",
+    }
+    resolved = label_map.get(source, data_label)
+    return await build_indicator_response("4.3 Exposure to Messages", year, region, resolved)

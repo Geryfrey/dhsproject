@@ -1,13 +1,13 @@
 import type { IndicatorResponse } from './types'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000'
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api'
 
 async function get<T>(path: string, params: Record<string, string> = {}): Promise<T> {
   const isServer = typeof window === 'undefined'
 
   let fetchUrl: string
   if (isServer) {
-    const url = new URL(path, API_URL)
+    const url = new URL(`${API_URL}${path}`)
     Object.entries(params).forEach(([k, v]) => {
       if (v !== undefined && v !== '') url.searchParams.set(k, v)
     })

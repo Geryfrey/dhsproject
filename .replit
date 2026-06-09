@@ -38,13 +38,13 @@ waitForPort = 5000
 name = "Backend API"
 author = "agent"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "uvicorn app.main:app --host 127.0.0.1 --port 8000"
-waitForPort = 8000
-
 [workflows.workflow.metadata]
 outputType = "console"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd backend && daphne -b 127.0.0.1 -p 8000 rdhs_viz.asgi:application"
+waitForPort = 8000
 
 [[ports]]
 localPort = 5000

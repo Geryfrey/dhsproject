@@ -9,44 +9,43 @@ router = APIRouter(
     responses={404: {"description": "Indicator not found or not yet computed"}},
 )
 
+ASSET_MAP = {
+    "electricity": ("1.1 Electricity coverage", "Total"),
+    "mobile": ("1.2 Household durable goods", "Mobile Phone"),
+    "radio": ("1.2 Household durable goods", "Radio"),
+    "tv": ("1.2 Household durable goods", "Television"),
+    "computer": ("1.2 Household durable goods", "Computer"),
+    "refrigerator": ("1.2 Household durable goods", "Refrigerator"),
+    "bicycle": ("1.2 Household durable goods", "Bicycle"),
+    "motorcycle": ("1.2 Household durable goods", "Motorcycle"),
+}
 
-@router.get(
-    "/electricity",
-    response_model=IndicatorResponse,
-    summary="1.1 Electricity Coverage",
-    description="Percentage of households with electricity access, by district and province.",
-)
+
+@router.get("/electricity", response_model=IndicatorResponse, summary="1.1 Electricity Coverage")
 async def get_electricity(
-    year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
-    data_label: str = Query("Total", description="Demographic breakdown (e.g. Total, Urban, Rural)"),
+    year: Optional[int] = Query(None),
+    region: Optional[int] = Query(None, ge=1, le=5),
+    data_label: str = Query("Total"),
 ):
-    return await build_indicator_response("1.1 Electricity coverage", year, province_id, data_label)
+    return await build_indicator_response("1.1 Electricity coverage", year, region, data_label)
 
 
-@router.get(
-    "/household-assets",
-    response_model=IndicatorResponse,
-    summary="1.2 Household Durable Goods",
-    description="Ownership of durable goods (radio, TV, mobile, computer, etc.). Use `data_label` to select a specific good.",
-)
+@router.get("/household-assets", response_model=IndicatorResponse, summary="1.2 Household Durable Goods")
 async def get_household_assets(
-    year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
-    data_label: str = Query("Radio", description="Good to display: Radio, Television, Mobile Phone, Computer, Refrigerator, Bicycle, Motorcycle, Car/Truck"),
+    year: Optional[int] = Query(None),
+    region: Optional[int] = Query(None, ge=1, le=5),
+    asset: str = Query("radio", description="Asset key: electricity, mobile, radio, tv, computer, refrigerator, bicycle, motorcycle"),
+    data_label: Optional[str] = Query(None, description="Override data_label (auto-resolved from asset if omitted)"),
 ):
-    return await build_indicator_response("1.2 Household durable goods", year, province_id, data_label)
+    indicator_name, default_label = ASSET_MAP.get(asset.lower(), ("1.2 Household durable goods", "Radio"))
+    resolved_label = data_label if data_label else default_label
+    return await build_indicator_response(indicator_name, year, region, resolved_label)
 
 
-@router.get(
-    "/handwashing",
-    response_model=IndicatorResponse,
-    summary="1.3 Hand Washing Place",
-    description="Distribution of hand washing place type (Fixed, Mobile, No specific place). Use `data_label` to select type.",
-)
+@router.get("/handwashing", response_model=IndicatorResponse, summary="1.3 Hand Washing Place")
 async def get_handwashing(
-    year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
-    data_label: str = Query("Fixed place", description="Place type: Fixed place, Mobile place, No specific place"),
+    year: Optional[int] = Query(None),
+    region: Optional[int] = Query(None, ge=1, le=5),
+    data_label: str = Query("Fixed place"),
 ):
-    return await build_indicator_response("1.3 Hand washing place", year, province_id, data_label)
+    return await build_indicator_response("1.3 Hand washing place", year, region, data_label)

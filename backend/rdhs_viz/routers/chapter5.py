@@ -18,10 +18,10 @@ router = APIRouter(
 )
 async def get_antenatal_care(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Total", description="Demographic breakdown"),
 ):
-    return await build_indicator_response("5.1 Antenatal Care (Skilled)", year, province_id, data_label)
+    return await build_indicator_response("5.1 Antenatal Care (Skilled)", year, region, data_label)
 
 
 @router.get(
@@ -32,10 +32,10 @@ async def get_antenatal_care(
 )
 async def get_tetanus_protection(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Total", description="Demographic breakdown"),
 ):
-    return await build_indicator_response("5.2 Tetanus Protection", year, province_id, data_label)
+    return await build_indicator_response("5.2 Tetanus Protection", year, region, data_label)
 
 
 @router.get(
@@ -46,10 +46,10 @@ async def get_tetanus_protection(
 )
 async def get_delivery_place(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Health facility", description="Place: Health facility, Home, Other"),
 ):
-    return await build_indicator_response("5.3 Place of Delivery", year, province_id, data_label)
+    return await build_indicator_response("5.3 Place of Delivery", year, region, data_label)
 
 
 @router.get(
@@ -60,10 +60,10 @@ async def get_delivery_place(
 )
 async def get_delivery_assistance(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Total", description="Demographic breakdown"),
 ):
-    return await build_indicator_response("5.4 Assistance at Delivery", year, province_id, data_label)
+    return await build_indicator_response("5.4 Assistance at Delivery", year, region, data_label)
 
 
 @router.get(
@@ -74,7 +74,7 @@ async def get_delivery_assistance(
 )
 async def get_postnatal_care(
     year: Optional[int] = Query(None, description="Survey year (default: latest available)"),
-    province_id: Optional[int] = Query(None, ge=1, le=5, description="Filter by province ID (1–5)"),
+    region: Optional[int] = Query(None, ge=1, le=5, description="Province DHS code (1=Kigali, 2=Southern, 3=Western, 4=Northern, 5=Eastern)"),
     data_label: str = Query("Total", description="Demographic breakdown"),
 ):
-    return await build_indicator_response("5.5 Postnatal Checkups", year, province_id, data_label)
+    return await build_indicator_response("5.5 Postnatal Checkups", year, region, data_label)
