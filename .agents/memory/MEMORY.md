@@ -1,0 +1,6 @@
+- [Chart architecture](chart-architecture.md) — ChartContainer.tsx is the single chart source; ChartTypeSelector exported from same file; types: bar-h/bar-v/line/pie/radar.
+- [DataTable contract](datatable-contract.md) — DataRow interface requires {name, value, type, sampleSize?, province?, provinceCode?}; table computes rank/vsNational/pctNational client-side from the rows array.
+- [Compare page](compare-page.md) — /compare route is fully client-side (no SSR initialData); CompareClient.tsx handles cross-chapter indicator comparison; useQueries fires indCount×5 parallel requests.
+- [Overview page client](overview-client.md) — app/page.tsx is a 'use client' component (no SSR); OverviewClient.tsx is dead code but harmless; KPI data fetched via useQueries on client.
+- [Report modal pattern](report-modal.md) — PDF export calls window.print() after modal closes; Word export generates Office HTML blob with .doc extension; modal filters chapter/indicator/province selections.
+- [Hydration dates](hydration-dates.md) — Any new Date() in SSR-rendered divs must use suppressHydrationWarning + typeof window !== 'undefined' guard to avoid hydration mismatch warnings.
