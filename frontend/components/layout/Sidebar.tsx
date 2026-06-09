@@ -51,15 +51,15 @@ export default function Sidebar() {
         'flex h-16 items-center gap-3 border-b border-white/10 px-3 shrink-0',
         collapsed ? 'justify-center px-0' : 'px-4'
       )}>
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/10">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white p-0.5">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/nisr-logo.png"
             alt="NISR Logo"
-            width={32}
-            height={32}
+            width={36}
+            height={36}
             className="rounded object-contain"
-            style={{ width: 32, height: 32 }}
+            style={{ width: 36, height: 36 }}
           />
         </div>
         {!collapsed && (
@@ -142,7 +142,7 @@ export default function Sidebar() {
       {!collapsed && (
         <div className="sidebar-label border-t border-white/10 px-4 py-3 shrink-0">
           <p className="text-[10px] text-white/50">Rwanda DHS 2019–20</p>
-          <p className="text-[10px] text-white/35">NISR · ICF International</p>
+          <p className="text-[10px] text-white/35">NISR</p>
         </div>
       )}
     </aside>

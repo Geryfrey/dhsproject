@@ -228,7 +228,7 @@ export default function OverviewPage() {
         </section>
 
         <p className="text-center text-xs text-slate-400">
-          Data source: Rwanda Demographic and Health Survey 2019–20 (RDHS-2020) · NISR &amp; ICF International
+          Data source: Rwanda Demographic and Health Survey 2019–20 (RDHS-2020) · NISR
         </p>
       </div>
     </>

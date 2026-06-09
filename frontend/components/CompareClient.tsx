@@ -41,7 +41,7 @@ function Select({ label, value, onChange, options }: { label: string; value: str
   )
 }
 
-const INDICATOR_COLORS = ['#1d4ed8', '#0f766e', '#7c3aed', '#b45309', '#dc2626', '#0891b2', '#15803d', '#be185d']
+const INDICATOR_COLORS = ['#1B3C74', '#0099D4', '#2D6AAE', '#00756A', '#E07B39', '#6B4E9B', '#C8563E', '#3D8C5A']
 
 export default function CompareClient() {
   const [selectedIndicators, setSelectedIndicators] = useState<SelectedIndicator[]>([])
@@ -135,9 +135,9 @@ export default function CompareClient() {
       <Header title="Compare Regions" subtitle="Compare indicators across provinces · DHS Rwanda 2019–20" />
       <div className="p-6 space-y-6">
         {/* Hero */}
-        <div className="rounded-xl border border-green-200 bg-gradient-to-br from-rwanda-green to-green-700 p-5 text-white">
+        <div className="rounded-xl border border-nisr-navy/20 bg-nisr-navy p-5 text-white">
           <h2 className="text-lg font-bold">Regional Indicator Comparison</h2>
-          <p className="mt-1 text-green-100/90 text-sm">Add indicators from any chapter and compare them side-by-side across Rwanda's five provinces.</p>
+          <p className="mt-1 text-white/75 text-sm">Add indicators from any chapter and compare them side-by-side across Rwanda's five provinces.</p>
         </div>
 
         {/* Add indicator */}

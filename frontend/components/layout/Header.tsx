@@ -20,7 +20,7 @@ export default function Header({ title, subtitle, onDownloadCSV }: HeaderProps) 
         ) : (
           <>
             <h1 className="text-base font-semibold text-slate-900">RDHS Insights Dashboard</h1>
-            <p className="text-xs text-slate-500">Demographic and Health Survey 2019–20 · NISR & ICF International</p>
+            <p className="text-xs text-slate-500">Demographic and Health Survey 2019–20 · NISR</p>
           </>
         )}
       </div>
