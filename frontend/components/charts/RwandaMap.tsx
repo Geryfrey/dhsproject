@@ -9,12 +9,18 @@ interface ProvinceData {
   value: number | null
 }
 
+interface DistrictEntry {
+  name: string
+  value: number | null
+}
+
 interface Props {
   data: ProvinceData[]
   unit: string
   national?: number | null
   onSelect?: (code: number, name: string) => void
   selected?: number | null
+  districtData?: DistrictEntry[]
 }
 
 const DISTRICT_PROVINCE: Record<string, number> = {
@@ -37,21 +43,22 @@ const PROVINCE_NAMES: Record<number, string> = {
 }
 
 const NISR_SCALE = ['#C7D9F0', '#8FB8E0', '#5590C8', '#2D6AAE', '#1B3C74']
+const DISTRICT_SCALE = ['#C7D9F0', '#8FB8E0', '#5590C8', '#2D6AAE', '#1B3C74']
 
-function getColor(value: number | null, allValues: number[], selected: boolean): string {
+function getColor(value: number | null, allValues: number[], selected: boolean, scale = NISR_SCALE): string {
   if (selected) return '#0D2550'
   if (value == null) return '#CBD5E1'
   const valid = allValues.filter((v): v is number => v != null)
-  if (valid.length === 0) return NISR_SCALE[0]
+  if (valid.length === 0) return scale[0]
   const min = Math.min(...valid)
   const max = Math.max(...valid)
   const range = max - min || 1
   const pct = (value - min) / range
-  if (pct < 0.2) return NISR_SCALE[0]
-  if (pct < 0.4) return NISR_SCALE[1]
-  if (pct < 0.6) return NISR_SCALE[2]
-  if (pct < 0.8) return NISR_SCALE[3]
-  return NISR_SCALE[4]
+  if (pct < 0.2) return scale[0]
+  if (pct < 0.4) return scale[1]
+  if (pct < 0.6) return scale[2]
+  if (pct < 0.8) return scale[3]
+  return scale[4]
 }
 
 function ringToPath(
@@ -72,9 +79,15 @@ function ringToPath(
 const W = 500
 const H = 440
 
-export default function RwandaMap({ data, unit, national, onSelect, selected }: Props) {
+interface HoverInfo {
+  label: string
+  value: number | null
+}
+
+export default function RwandaMap({ data, unit, national, onSelect, selected, districtData }: Props) {
   const [geojson, setGeojson] = useState<any>(null)
   const [hovered, setHovered] = useState<number | null>(null)
+  const [hoveredDistrict, setHoveredDistrict] = useState<HoverInfo | null>(null)
 
   useEffect(() => {
     fetch('/rwanda-districts.geojson')
@@ -83,8 +96,18 @@ export default function RwandaMap({ data, unit, national, onSelect, selected }: 
       .catch(() => {})
   }, [])
 
-  const allValues = data.map(d => d.value).filter((v): v is number => v != null)
+  const allProvValues = data.map(d => d.value).filter((v): v is number => v != null)
+  const allDistrictValues = useMemo(
+    () => (districtData ?? []).map(d => d.value).filter((v): v is number => v != null),
+    [districtData]
+  )
   const fmt = (v: number) => unit === 'Percentage' ? `${fmtNum(v)}%` : fmtNum(v)
+
+  const districtMap = useMemo(() => {
+    const map: Record<string, number | null> = {}
+    districtData?.forEach(d => { map[d.name] = d.value })
+    return map
+  }, [districtData])
 
   const { districtPaths } = useMemo(() => {
     if (!geojson) return { districtPaths: [] }
@@ -133,42 +156,81 @@ export default function RwandaMap({ data, unit, national, onSelect, selected }: 
     )
   }
 
+  const showingDistricts = !!selected && districtData && districtData.length > 0
+
   return (
     <div className="flex flex-col items-center w-full">
       <div className="relative w-full">
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.08))' }}>
           {districtPaths.map(({ name, provCode, pathStr }) => {
-            const provData = data.find(d => d.code === provCode)
-            const value = provData?.value ?? null
-            const isSelected = selected === provCode
-            const isHovered = hovered === provCode
-            const fill = getColor(value, allValues, isSelected)
+            const isSelectedProvince = selected === provCode
+            const isInDistrictView = showingDistricts && isSelectedProvince
+
+            let fill: string
+            let strokeWidth = 0.7
+            let strokeColor = 'white'
+
+            if (isInDistrictView) {
+              const distVal = districtMap[name] ?? null
+              fill = getColor(distVal, allDistrictValues, false, DISTRICT_SCALE)
+              strokeWidth = 1.2
+              strokeColor = 'white'
+            } else {
+              const provData = data.find(d => d.code === provCode)
+              const value = provData?.value ?? null
+              fill = getColor(value, allProvValues, isSelectedProvince && !showingDistricts)
+            }
+
+            const isHoveredProvince = hovered === provCode && !isInDistrictView
 
             return (
               <path
                 key={name}
                 d={pathStr}
                 fill={fill}
-                stroke="white"
-                strokeWidth={0.7}
+                stroke={strokeColor}
+                strokeWidth={strokeWidth}
                 style={{
                   cursor: onSelect && provCode ? 'pointer' : 'default',
                   transition: 'all 0.15s ease',
-                  opacity: selected && !isSelected ? 0.55 : 1,
-                  filter: isHovered ? 'brightness(1.12)' : 'none',
+                  opacity: selected && !isSelectedProvince ? 0.45 : 1,
+                  filter: isHoveredProvince ? 'brightness(1.12)' : isInDistrictView && hoveredDistrict?.label === name ? 'brightness(1.15)' : 'none',
                 }}
                 onClick={() => provCode && onSelect?.(provCode, PROVINCE_NAMES[provCode] ?? name)}
-                onMouseEnter={() => provCode && setHovered(provCode)}
-                onMouseLeave={() => setHovered(null)}
+                onMouseEnter={() => {
+                  if (isInDistrictView) {
+                    const val = districtMap[name] ?? null
+                    setHoveredDistrict({ label: name, value: val })
+                    setHovered(null)
+                  } else {
+                    provCode && setHovered(provCode)
+                    setHoveredDistrict(null)
+                  }
+                }}
+                onMouseLeave={() => {
+                  setHovered(null)
+                  setHoveredDistrict(null)
+                }}
               />
             )
           })}
         </svg>
 
-        {hoveredProv && hoveredProv.value != null && (
+        {/* Province hover tooltip */}
+        {!showingDistricts && hoveredProv && hoveredProv.value != null && (
           <div className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 rounded-lg border border-slate-200 bg-white px-3 py-2 shadow-md text-xs text-center whitespace-nowrap">
             <p className="font-semibold text-slate-800">{hoveredProv.name}</p>
             <p className="font-bold text-nisr-navy">{fmt(hoveredProv.value)}</p>
+          </div>
+        )}
+
+        {/* District hover tooltip */}
+        {showingDistricts && hoveredDistrict && (
+          <div className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 rounded-lg border border-nisr-navy/20 bg-white px-3 py-2 shadow-md text-xs text-center whitespace-nowrap">
+            <p className="font-semibold text-slate-800">{hoveredDistrict.label}</p>
+            <p className="font-bold text-nisr-navy">
+              {hoveredDistrict.value != null ? fmt(hoveredDistrict.value) : 'No data'}
+            </p>
           </div>
         )}
       </div>
@@ -188,8 +250,13 @@ export default function RwandaMap({ data, unit, national, onSelect, selected }: 
           National average: <span className="font-semibold text-nisr-navy">{fmt(national)}</span>
         </p>
       )}
-      {onSelect && (
+      {onSelect && !selected && (
         <p className="mt-1 text-[10px] text-slate-400">Click a province to see district breakdown</p>
+      )}
+      {onSelect && selected && (
+        <p className="mt-1 text-[10px] text-slate-400">
+          Showing {PROVINCE_NAMES[selected]} districts · Click again to deselect
+        </p>
       )}
     </div>
   )

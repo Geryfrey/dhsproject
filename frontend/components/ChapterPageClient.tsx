@@ -218,6 +218,7 @@ export default function ChapterPageClient({ chapter, initialData }: Props) {
                     national={national}
                     onSelect={handleProvinceSelect}
                     selected={selectedProvince}
+                    districtData={districtChartData}
                   />
                 </div>
                 <div>
@@ -270,6 +271,7 @@ export default function ChapterPageClient({ chapter, initialData }: Props) {
                   unit={unit}
                   national={national}
                   selected={selectedProvince}
+                  districtData={districtChartData}
                 />
               </div>
               <div>
