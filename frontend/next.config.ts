@@ -2,6 +2,7 @@ import type { NextConfig } from 'next'
 
 const replitDomain = process.env.REPLIT_DEV_DOMAIN
 const replitDomains = process.env.REPLIT_DOMAINS
+const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000'
 
 const allowedOrigins: string[] = []
 if (replitDomain) allowedOrigins.push(replitDomain)
@@ -14,7 +15,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:8000/:path*',
+        destination: `${apiUrl}/:path*`,
       },
     ]
   },

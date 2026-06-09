@@ -1,13 +1,26 @@
 import type { IndicatorResponse } from './types'
 
-const BASE = '/api'
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000'
 
 async function get<T>(path: string, params: Record<string, string> = {}): Promise<T> {
-  const url = new URL(path, typeof window !== 'undefined' ? window.location.origin : 'http://localhost:5000')
-  Object.entries(params).forEach(([k, v]) => {
-    if (v !== undefined && v !== '') url.searchParams.set(k, v)
-  })
-  const res = await fetch(`${BASE}${url.pathname}${url.search}`)
+  const isServer = typeof window === 'undefined'
+
+  let fetchUrl: string
+  if (isServer) {
+    const url = new URL(path, API_URL)
+    Object.entries(params).forEach(([k, v]) => {
+      if (v !== undefined && v !== '') url.searchParams.set(k, v)
+    })
+    fetchUrl = url.toString()
+  } else {
+    const url = new URL(`/api${path}`, window.location.origin)
+    Object.entries(params).forEach(([k, v]) => {
+      if (v !== undefined && v !== '') url.searchParams.set(k, v)
+    })
+    fetchUrl = url.toString()
+  }
+
+  const res = await fetch(fetchUrl)
   if (!res.ok) {
     const err = await res.json().catch(() => ({ detail: res.statusText }))
     throw new Error(err.detail || `API error ${res.status}`)

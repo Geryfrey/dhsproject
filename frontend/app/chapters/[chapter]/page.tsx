@@ -9,13 +9,15 @@ interface Props {
 
 const PROVINCE_CODES = [1, 2, 3, 4, 5]
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000'
+
 async function fetchProvince(
   path: string,
   params: Record<string, string>,
   region: number
 ): Promise<IndicatorResponse | null> {
   try {
-    const url = new URL(`http://localhost:8000${path}`)
+    const url = new URL(`${API_URL}${path}`)
     Object.entries({ ...params, region: String(region) }).forEach(([k, v]) => {
       if (v !== undefined && v !== '') url.searchParams.set(k, v)
     })
