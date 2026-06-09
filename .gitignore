@@ -20,3 +20,23 @@ build/
 # Misc
 .DS_Store
 .env
+
+
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.DS_Store
+.vscode/
+.idea/
+*.log
+venv/
+.venv/
+env/
+.gemini/
+scratch/
+walkthrough.md
+task.md
+implementation_plan.md
