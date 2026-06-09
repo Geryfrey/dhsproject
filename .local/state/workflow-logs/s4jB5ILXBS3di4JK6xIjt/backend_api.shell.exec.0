@@ -1,0 +1,125 @@
+[32mINFO[0m:     Started server process [[36m877[0m]
+[32mINFO[0m:     Waiting for application startup.
+[32mINFO[0m:     Application startup complete.
+[32mINFO[0m:     Uvicorn running on [1mhttp://127.0.0.1:8000[0m (Press CTRL+C to quit)
+[32mINFO[0m:     10.56.4.43:0 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.5.67:0 - "[1mGET /chapter5/delivery-assistance?provider=skilled&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.5.67:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter7/stunting?severity=any&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter8/itn-ownership?region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.4.43:0 - "[1mGET /chapter9/hiv-testing?gender=female&timing=ever&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=2 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=3 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=5 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=4 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.5.67:0 - "[1mGET /chapter5/delivery-assistance?provider=skilled&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.5.67:0 - "[1mGET /chapter8/itn-ownership?region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.4.43:0 - "[1mGET /chapter7/stunting?severity=any&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter9/hiv-testing?gender=female&timing=ever&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.175.64:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=2 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=3 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=4 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.4.43:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=5 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.5.67:0 - "[1mGET /chapter5/delivery-assistance?provider=skilled&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.4.43:0 - "[1mGET /chapter8/itn-ownership?region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter7/stunting?severity=any&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter9/hiv-testing?gender=female&timing=ever&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=4 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=3 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=2 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=5 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.5.67:0 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.4.43:0 - "[1mGET /chapter7/stunting?severity=any&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.4.43:0 - "[1mGET /chapter5/delivery-assistance?provider=skilled&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.175.64:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=2 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter8/itn-ownership?region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=3 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter9/hiv-testing?gender=female&timing=ever&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.4.43:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=4 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=5 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter5/delivery-assistance?provider=skilled&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.175.64:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter8/itn-ownership?region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.175.64:0 - "[1mGET /chapter7/stunting?severity=any&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter9/hiv-testing?gender=female&timing=ever&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=2 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=4 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=3 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=5 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter5/delivery-assistance?provider=skilled&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.175.64:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter8/itn-ownership?region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter7/stunting?severity=any&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter9/hiv-testing?gender=female&timing=ever&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.175.64:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=2 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=3 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=4 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=5 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter4/contraception-use?method=modern&marital_status=married&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:42428 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:42430 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=2 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:42432 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=3 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:42448 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=4 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:42456 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=5 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:42428 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:42430 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=2 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:42432 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=3 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:42448 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=4 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:42456 - "[1mGET /chapter3/fertility-rate?rate_type=observed&region=5 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:42428 - "[1mGET /chapter1/household-assets?asset=electricity&region=1 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     127.0.0.1:42430 - "[1mGET /chapter1/household-assets?asset=electricity&region=2 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     127.0.0.1:42432 - "[1mGET /chapter1/household-assets?asset=electricity&region=3 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     127.0.0.1:42448 - "[1mGET /chapter1/household-assets?asset=electricity&region=4 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     127.0.0.1:42456 - "[1mGET /chapter1/household-assets?asset=electricity&region=5 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.5.67:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=1 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=2 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=3 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.5.67:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=4 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.175.64:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=5 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=4 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=5 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=3 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=2 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.4.43:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=1 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.175.64:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=5 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.5.67:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=4 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=2 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.0.29:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=3 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter1/household-assets?asset=electricity&region=1 HTTP/1.1[0m" [31m404 Not Found[0m
+[32mINFO[0m:     127.0.0.1:47362 - "[1mGET /chapter2/birth-registration?region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:47386 - "[1mGET /chapter2/birth-registration?region=4 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:47366 - "[1mGET /chapter2/birth-registration?region=2 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:47402 - "[1mGET /chapter2/birth-registration?region=5 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:47378 - "[1mGET /chapter2/birth-registration?region=3 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter2/birth-registration?region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.4.43:0 - "[1mGET /chapter2/birth-registration?region=4 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter2/birth-registration?region=3 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter2/birth-registration?region=2 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter2/birth-registration?region=5 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.175.64:0 - "[1mGET /chapter2/birth-registration?region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.5.67:0 - "[1mGET /chapter2/birth-registration?region=3 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.1.89:0 - "[1mGET /chapter2/birth-registration?region=4 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.5.67:0 - "[1mGET /chapter2/birth-registration?region=2 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.175.64:0 - "[1mGET /chapter2/birth-registration?region=5 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:47362 - "[1mGET /chapter2/birth-registration?region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:47366 - "[1mGET /chapter2/birth-registration?region=2 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:47378 - "[1mGET /chapter2/birth-registration?region=3 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:47386 - "[1mGET /chapter2/birth-registration?region=4 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     127.0.0.1:47402 - "[1mGET /chapter2/birth-registration?region=5 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.4.43:0 - "[1mGET /chapter2/birth-registration?region=1 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.175.64:0 - "[1mGET /chapter2/birth-registration?region=3 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.21.233:0 - "[1mGET /chapter2/birth-registration?region=4 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.175.64:0 - "[1mGET /chapter2/birth-registration?region=5 HTTP/1.1[0m" [91m500 Internal Server Error[0m
+[32mINFO[0m:     10.56.4.43:0 - "[1mGET /chapter2/birth-registration?region=2 HTTP/1.1[0m" [91m500 Internal Server Error[0m

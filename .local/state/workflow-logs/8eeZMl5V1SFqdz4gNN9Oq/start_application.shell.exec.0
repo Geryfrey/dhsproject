@@ -1,0 +1,143 @@
+[1G[0K⠙[1G[0K
+> dhs-rwanda-dashboard@0.1.0 dev
+> next dev -p 5000 --hostname 0.0.0.0
+
+[1G[0K⠙[1G[0K   [1m[38;2;173;127;168m▲ Next.js 15.5.19[39m[22m
+   - Local:        http://localhost:5000
+   - Network:      http://0.0.0.0:5000
+
+ [32m[1m✓[22m[39m Starting...
+ [32m[1m✓[22m[39m Ready in 2.3s
+ [37m[1m○[22m[39m Compiling / ...
+ [32m[1m✓[22m[39m Compiled / in 3.6s (2525 modules)
+ GET / [32m200[39m in 4574ms
+ [32m[1m✓[22m[39m Compiled in 1784ms (1206 modules)
+ GET / [32m200[39m in 51ms
+ [32m[1m✓[22m[39m Compiled in 981ms (2539 modules)
+ GET / [32m200[39m in 113ms
+ [32m[1m✓[22m[39m Compiled in 194ms (1206 modules)
+ GET / [32m200[39m in 31ms
+ [32m[1m✓[22m[39m Compiled in 325ms (1206 modules)
+ GET / [32m200[39m in 34ms
+ [31m[1m⨯[22m[39m ./app/layout.tsx:6:1
+[31m[1mModule not found[22m[39m: Can't resolve '[32m@/components/layout/MainContent[39m'
+[0m [90m 4 |[39m [36mimport[39m [33mQueryProvider[39m [36mfrom[39m [32m'@/components/QueryProvider'[39m
+ [90m 5 |[39m [36mimport[39m [33mLayoutClient[39m [36mfrom[39m [32m'@/components/layout/LayoutClient'[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m [33mMainContent[39m [36mfrom[39m [32m'@/components/layout/MainContent'[39m
+ [90m   |[39m [31m[1m^[22m[39m
+ [90m 7 |[39m
+ [90m 8 |[39m [36mexport[39m [36mconst[39m metadata[33m:[39m [33mMetadata[39m [33m=[39m {
+ [90m 9 |[39m   title[33m:[39m [32m'RDHS Insights Dashboard'[39m[33m,[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ [33m[1m⚠[22m[39m Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ [37m[1m○[22m[39m Compiling /_error ...
+ [32m[1m✓[22m[39m Compiled /_error in 5.3s (2884 modules)
+ GET / [31m500[39m in 7774ms
+ GET / [31m500[39m in 8854ms
+ [33m[1m⚠[22m[39m Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+<w> [1m[33m[webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/home/runner/workspace/frontend/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/home/runner/workspace/frontend/.next/cache/webpack/client-development-fallback/0.pack.gz'[39m[22m
+ [33m[1m⚠[22m[39m Fast Refresh had to perform a full reload due to a runtime error.
+ [32m[1m✓[22m[39m Compiled in 2.7s (2935 modules)
+ GET / [32m200[39m in 2367ms
+ GET / [32m200[39m in 100ms
+ [33m[1m⚠[22m[39m Fast Refresh had to perform a full reload due to a runtime error.
+ GET / [32m200[39m in 94ms
+ [32m[1m✓[22m[39m Compiled in 1172ms (2933 modules)
+ [31m[1m⨯[22m[39m ./app/page.tsx:10:1
+[31m[1mModule not found[22m[39m: Can't resolve '[32m@/components/charts/VertBarChart[39m'
+[0m [90m  8 |[39m [36mimport[39m [33mHeader[39m [36mfrom[39m [32m'@/components/layout/Header'[39m
+ [90m  9 |[39m [36mimport[39m [33mRwandaMap[39m [36mfrom[39m [32m'@/components/charts/RwandaMap'[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m [33mVertBarChart[39m [36mfrom[39m [32m'@/components/charts/VertBarChart'[39m
+ [90m    |[39m [31m[1m^[22m[39m
+ [90m 11 |[39m [36mimport[39m { [33mPROVINCES[39m } [36mfrom[39m [32m'@/lib/types'[39m
+ [90m 12 |[39m [36mimport[39m { useState } [36mfrom[39m [32m'react'[39m
+ [90m 13 |[39m [36mimport[39m { [33mChevronDown[39m } [36mfrom[39m [32m'lucide-react'[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ [32m[1m✓[22m[39m Compiled in 974ms (2907 modules)
+ [32m[1m✓[22m[39m Compiled in 229ms (1371 modules)
+ [32m[1m✓[22m[39m Compiled in 434ms (1371 modules)
+ [33m[1m⚠[22m[39m Fast Refresh had to perform a full reload due to a runtime error.
+ [32m[1m✓[22m[39m Compiled in 1904ms (2907 modules)
+ GET / [32m200[39m in 843ms
+ [33m[1m⚠[22m[39m Fast Refresh had to perform a full reload due to a runtime error.
+ GET / [32m200[39m in 109ms
+ [32m[1m✓[22m[39m Compiled in 1290ms (2874 modules)
+ GET / [32m200[39m in 355ms
+ [32m[1m✓[22m[39m Compiled in 758ms (2874 modules)
+ [33m[1m⚠[22m[39m Fast Refresh had to perform a full reload due to a runtime error.
+ GET / [32m200[39m in 433ms
+ [33m[1m⚠[22m[39m Fast Refresh had to perform a full reload due to a runtime error.
+ GET / [32m200[39m in 102ms
+ [32m[1m✓[22m[39m Compiled in 194ms (1355 modules)
+ GET / [32m200[39m in 31ms
+ [33m[1m⚠[22m[39m ./components/layout/MainContent.tsx
+Attempted import error: 'useSidebar' is not exported from './LayoutClient' (imported as 'useSidebar').
+
+Import trace for requested module:
+./components/layout/MainContent.tsx
+
+./components/layout/MainContent.tsx
+Attempted import error: 'useSidebar' is not exported from './LayoutClient' (imported as 'useSidebar').
+
+Import trace for requested module:
+./components/layout/MainContent.tsx
+
+./components/layout/Sidebar.tsx
+Attempted import error: 'useSidebar' is not exported from './LayoutClient' (imported as 'useSidebar').
+
+Import trace for requested module:
+./components/layout/Sidebar.tsx
+
+./components/layout/Sidebar.tsx
+Attempted import error: 'useSidebar' is not exported from './LayoutClient' (imported as 'useSidebar').
+
+Import trace for requested module:
+./components/layout/Sidebar.tsx
+
+./components/layout/MainContent.tsx
+Attempted import error: 'useSidebar' is not exported from './LayoutClient' (imported as 'useSidebar').
+
+Import trace for requested module:
+./components/layout/MainContent.tsx
+
+./components/layout/Sidebar.tsx
+Attempted import error: 'useSidebar' is not exported from './LayoutClient' (imported as 'useSidebar').
+
+Import trace for requested module:
+./components/layout/Sidebar.tsx
+ GET / [32m200[39m in 93ms
+ [33m[1m⚠[22m[39m Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ [31m[1m⨯[22m[39m TypeError: (0 , _LayoutClient__WEBPACK_IMPORTED_MODULE_6__.useSidebar) is not a function
+    at Sidebar (components/layout/Sidebar.tsx:32:35)
+[0m [90m 30 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mSidebar[39m() {
+ [90m 31 |[39m   [36mconst[39m pathname [33m=[39m usePathname()
+[31m[1m>[22m[39m[90m 32 |[39m   [36mconst[39m { collapsed } [33m=[39m useSidebar()
+ [90m    |[39m                                   [31m[1m^[22m[39m
+ [90m 33 |[39m   [36mconst[39m [searchQuery[33m,[39m setSearchQuery] [33m=[39m useState([32m''[39m)
+ [90m 34 |[39m
+ [90m 35 |[39m   [36mconst[39m filteredItems [33m=[39m useMemo(() [33m=>[39m {[0m {
+  digest: [32m'2796656828'[39m
+}
+ GET / [31m500[39m in 320ms
+ [33m[1m⚠[22m[39m ./components/layout/MainContent.tsx
+Attempted import error: 'useSidebar' is not exported from './LayoutClient' (imported as 'useSidebar').
+
+Import trace for requested module:
+./components/layout/MainContent.tsx
+
+./components/layout/MainContent.tsx
+Attempted import error: 'useSidebar' is not exported from './LayoutClient' (imported as 'useSidebar').
+
+Import trace for requested module:
+./components/layout/MainContent.tsx
+
+./components/layout/MainContent.tsx
+Attempted import error: 'useSidebar' is not exported from './LayoutClient' (imported as 'useSidebar').
+
+Import trace for requested module:
+./components/layout/MainContent.tsx
+ [32m[1m✓[22m[39m Compiled in 478ms (2876 modules)
+ GET / [32m200[39m in 276ms
+ [33m[1m⚠[22m[39m Fast Refresh had to perform a full reload due to a runtime error.

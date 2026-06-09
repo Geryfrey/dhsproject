@@ -1,0 +1,96 @@
+
+> dhs-rwanda-dashboard@0.1.0 dev
+> next dev -p 5000 --hostname 0.0.0.0
+
+[1G[0K   [1m[38;2;173;127;168m▲ Next.js 15.5.19[39m[22m
+   - Local:        http://localhost:5000
+   - Network:      http://0.0.0.0:5000
+
+ [32m[1m✓[22m[39m Starting...
+ [32m[1m✓[22m[39m Ready in 1499ms
+ [37m[1m○[22m[39m Compiling / ...
+ [32m[1m✓[22m[39m Compiled / in 7.9s (2523 modules)
+ GET / [32m200[39m in 9304ms
+ GET / [32m200[39m in 123ms
+ [37m[1m○[22m[39m Compiling /chapters/[chapter] ...
+ [32m[1m✓[22m[39m Compiled /chapters/[chapter] in 1177ms (2558 modules)
+ GET /chapters/household [32m200[39m in 2296ms
+ GET /chapters/household [32m200[39m in 119ms
+ GET /chapters/household [32m200[39m in 193ms
+ GET / [32m200[39m in 53ms
+ GET /chapters/demographics [32m200[39m in 163ms
+ [37m[1m○[22m[39m Compiling /compare ...
+ [32m[1m✓[22m[39m Compiled /compare in 1290ms (2592 modules)
+ GET /compare [32m200[39m in 1434ms
+ GET /chapters/household [32m200[39m in 111ms
+ GET /chapters/gender [32m200[39m in 69ms
+ GET / [32m200[39m in 32ms
+ GET /compare [32m200[39m in 23ms
+ GET /compare [32m200[39m in 27ms
+ GET / [32m200[39m in 19ms
+ GET /compare [32m200[39m in 26ms
+ [32m[1m✓[22m[39m Compiled in 1683ms (2606 modules)
+ GET /compare [32m200[39m in 111ms
+ [32m[1m✓[22m[39m Compiled in 1919ms (2606 modules)
+ GET /compare [32m200[39m in 102ms
+ [32m[1m✓[22m[39m Compiled in 961ms (2606 modules)
+ GET /compare [32m200[39m in 66ms
+ [32m[1m✓[22m[39m Compiled in 600ms (2606 modules)
+ GET /compare [32m200[39m in 99ms
+ GET / [32m200[39m in 400ms
+ GET /compare [32m200[39m in 116ms
+ [32m[1m✓[22m[39m Compiled in 896ms (2606 modules)
+ GET /compare [32m200[39m in 152ms
+ [32m[1m✓[22m[39m Compiled in 721ms (2606 modules)
+ GET /compare [32m200[39m in 70ms
+ GET / [32m200[39m in 372ms
+ GET / [32m200[39m in 19ms
+ GET / [32m200[39m in 106ms
+ GET /compare [32m200[39m in 23ms
+ GET /chapters/household [32m200[39m in 113ms
+ GET / [32m200[39m in 155ms
+ [32m[1m✓[22m[39m Compiled in 3.4s (2606 modules)
+ GET / [32m200[39m in 121ms
+ GET /compare [32m200[39m in 126ms
+ GET /chapters/household [32m200[39m in 140ms
+ [32m[1m✓[22m[39m Compiled in 1220ms (2610 modules)
+ GET / [32m200[39m in 215ms
+ GET /compare [32m200[39m in 219ms
+ GET /chapters/household [32m200[39m in 225ms
+ [32m[1m✓[22m[39m Compiled in 2.1s (2610 modules)
+ GET /compare [32m200[39m in 224ms
+ GET / [32m200[39m in 223ms
+ GET /chapters/household [32m200[39m in 229ms
+ [32m[1m✓[22m[39m Compiled in 964ms (2610 modules)
+ GET /compare [32m200[39m in 235ms
+ GET / [32m200[39m in 231ms
+ GET /chapters/household [32m200[39m in 230ms
+ GET / [32m200[39m in 412ms
+ GET /chapters/household [32m200[39m in 104ms
+ GET /chapters/household [32m200[39m in 66ms
+ GET / [32m200[39m in 20ms
+ GET /compare [32m200[39m in 20ms
+ GET /chapters/demographics [32m200[39m in 82ms
+ GET /chapters/gender [32m200[39m in 91ms
+ GET /compare [32m200[39m in 24ms
+ [32m[1m✓[22m[39m Compiled in 1637ms (2578 modules)
+ GET /compare [32m200[39m in 229ms
+ GET /chapters/demographics [32m200[39m in 268ms
+ GET / [32m200[39m in 52ms
+ [33m[1m⚠[22m[39m Fast Refresh had to perform a full reload due to a runtime error.
+ GET /compare [32m200[39m in 350ms
+ [32m[1m✓[22m[39m Compiled in 621ms (2578 modules)
+ GET / [32m200[39m in 214ms
+ GET /compare [32m200[39m in 209ms
+ GET /chapters/demographics [32m200[39m in 216ms
+ [32m[1m✓[22m[39m Compiled in 415ms (2578 modules)
+ GET / [32m200[39m in 206ms
+ GET /compare [32m200[39m in 203ms
+ GET /chapters/demographics [32m200[39m in 205ms
+ [32m[1m✓[22m[39m Compiled in 1039ms (2578 modules)
+ GET / [32m200[39m in 144ms
+ GET /chapters/demographics [32m200[39m in 154ms
+ GET /compare [32m200[39m in 61ms
+ GET /compare [32m200[39m in 299ms
+ GET /compare [32m200[39m in 102ms
+ GET /compare [32m200[39m in 26ms

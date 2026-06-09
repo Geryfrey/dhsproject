@@ -1,0 +1,30 @@
+
+> dhs-rwanda-dashboard@0.1.0 dev
+> next dev -p 5000 --hostname 0.0.0.0
+
+[1G[0K [33m[1m⚠[22m[39m Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/runner/workspace/package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * /home/runner/workspace/frontend/package-lock.json
+
+   [1m[38;2;173;127;168m▲ Next.js 15.5.19[39m[22m
+   - Local:        http://localhost:5000
+   - Network:      http://0.0.0.0:5000
+
+ [32m[1m✓[22m[39m Starting...
+ [32m[1m✓[22m[39m Ready in 1239ms
+ [37m[1m○[22m[39m Compiling / ...
+ [32m[1m✓[22m[39m Compiled / in 6.1s (2539 modules)
+ GET / [32m200[39m in 7316ms
+ GET / [32m200[39m in 104ms
+ GET / [32m200[39m in 98ms
+ [37m[1m○[22m[39m Compiling /chapters/[chapter] ...
+ [32m[1m✓[22m[39m Compiled /chapters/[chapter] in 1066ms (2590 modules)
+ GET /chapters/fertility [32m200[39m in 1654ms
+ GET /chapters/fertility [32m200[39m in 66ms
+ GET / [32m200[39m in 29ms
+ GET /chapters/household [32m200[39m in 58ms
+ GET /chapters/demographics [32m200[39m in 60ms
+ GET /chapters/demographics [32m200[39m in 45ms

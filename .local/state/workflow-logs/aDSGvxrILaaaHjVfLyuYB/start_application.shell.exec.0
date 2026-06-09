@@ -1,0 +1,31 @@
+[1G[0K⠙[1G[0K
+> dhs-rwanda-dashboard@0.1.0 dev
+> next dev -p 5000 --hostname 0.0.0.0
+
+[1G[0K⠙[1G[0K   [1m[38;2;173;127;168m▲ Next.js 15.5.19[39m[22m
+   - Local:        http://localhost:5000
+   - Network:      http://0.0.0.0:5000
+
+ [32m[1m✓[22m[39m Starting...
+ [32m[1m✓[22m[39m Ready in 3.1s
+ [37m[1m○[22m[39m Compiling / ...
+ [32m[1m✓[22m[39m Compiled / in 4.4s (2525 modules)
+ GET / [32m200[39m in 5501ms
+ GET / [32m200[39m in 116ms
+ [37m[1m○[22m[39m Compiling /chapters/[chapter] ...
+ [32m[1m✓[22m[39m Compiled /chapters/[chapter] in 1536ms (2576 modules)
+ GET /chapters/gender [32m200[39m in 7869ms
+ GET /chapters/household [32m200[39m in 3365ms
+ GET /chapters/demographics [32m200[39m in 1653ms
+ [37m[1m○[22m[39m Compiling /compare ...
+ [32m[1m✓[22m[39m Compiled /compare in 1235ms (2590 modules)
+ GET /compare [32m200[39m in 1349ms
+ GET /chapters/household [32m200[39m in 5304ms
+ GET /compare [32m200[39m in 29ms
+ GET / [32m200[39m in 37ms
+ GET /chapters/malaria [32m200[39m in 5418ms
+ GET /chapters/malaria [32m200[39m in 5437ms
+ GET /chapters/hiv-aids [32m200[39m in 8047ms
+ GET /chapters/fertility [32m200[39m in 8046ms
+ GET /chapters/gender [32m200[39m in 6050ms
+ GET /chapters/malaria [32m200[39m in 5315ms
