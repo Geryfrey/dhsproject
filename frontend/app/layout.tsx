@@ -2,10 +2,12 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Sidebar from '@/components/layout/Sidebar'
 import QueryProvider from '@/components/QueryProvider'
+import LayoutClient from '@/components/layout/LayoutClient'
+import MainContent from '@/components/layout/MainContent'
 
 export const metadata: Metadata = {
-  title: 'DHS Rwanda Analytics Dashboard',
-  description: 'Demographic and Health Survey Rwanda 2019-20 — interactive analytics dashboard',
+  title: 'RDHS Insights Dashboard',
+  description: 'Rwanda Demographic and Health Survey — NISR Analytics Dashboard',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -13,12 +15,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <QueryProvider>
-          <div className="flex min-h-screen">
+          <LayoutClient>
             <Sidebar />
-            <div className="main-content ml-64 flex-1 flex flex-col min-h-screen">
+            <MainContent>
               {children}
-            </div>
-          </div>
+            </MainContent>
+          </LayoutClient>
         </QueryProvider>
       </body>
     </html>

@@ -1,6 +1,7 @@
-- [Chart architecture](chart-architecture.md) — ChartContainer.tsx is the single chart source; ChartTypeSelector exported from same file; types: bar-h/bar-v/line/pie/radar.
+- [Chart architecture](chart-architecture.md) — ChartContainer.tsx kept but ChartTypeSelector removed from UI; new VertBarChart.tsx + RwandaMap.tsx used for side-by-side display everywhere.
 - [DataTable contract](datatable-contract.md) — DataRow interface requires {name, value, type, sampleSize?, province?, provinceCode?}; table computes rank/vsNational/pctNational client-side from the rows array.
 - [Compare page](compare-page.md) — /compare route is fully client-side (no SSR initialData); CompareClient.tsx handles cross-chapter indicator comparison; useQueries fires indCount×5 parallel requests.
-- [Overview page client](overview-client.md) — app/page.tsx is a 'use client' component (no SSR); OverviewClient.tsx is dead code but harmless; KPI data fetched via useQueries on client.
-- [Report modal pattern](report-modal.md) — PDF export calls window.print() after modal closes; Word export generates Office HTML blob with .doc extension; modal filters chapter/indicator/province selections.
+- [Overview page client](overview-client.md) — app/page.tsx is a 'use client' component; 5 KPIs: Fertility, Maternal Health, Nutrition, Family Planning, HIV/AIDS; side-by-side RwandaMap+VertBarChart.
 - [Hydration dates](hydration-dates.md) — Any new Date() in SSR-rendered divs must use suppressHydrationWarning + typeof window !== 'undefined' guard to avoid hydration mismatch warnings.
+- [Sidebar context pattern](sidebar-context.md) — Sidebar collapse state lives in SidebarContext.tsx (separate from LayoutClient.tsx) to avoid Fast Refresh issues; hook+provider must never be in same file as default component export used by layout.tsx.
+- [NISR color theme](nisr-colors.md) — NISR navy #1B3C74 replaces rwanda-green; cyan #0099D4 as accent; both aliased as rwanda-green/rwanda-green-light in tailwind for backward compat; logo at /public/nisr-logo.png.

@@ -9,11 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        nisr: {
+          navy: '#1B3C74',
+          'navy-dark': '#0D2550',
+          'navy-light': '#2A509A',
+          cyan: '#0099D4',
+          'cyan-dark': '#0077A8',
+          'cyan-light': '#4AB8E0',
+          sky: '#E8F4FB',
+        },
         rwanda: {
-          green: '#1a6b3c',
-          'green-dark': '#14532d',
-          'green-light': '#22c55e',
-          blue: '#1e40af',
+          green: '#1B3C74',
+          'green-dark': '#0D2550',
+          'green-light': '#0099D4',
+          blue: '#0099D4',
           amber: '#f59e0b',
         },
       },
