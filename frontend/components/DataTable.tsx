@@ -19,7 +19,7 @@ interface Props {
   indicator: string
 }
 
-type SortCol = 'rank' | 'name' | 'type' | 'province' | 'value' | 'sampleSize' | 'vsNational' | 'pctNational'
+type SortCol = 'rank' | 'name' | 'type' | 'province' | 'value' | 'vsNational'
 type SortDir = 'asc' | 'desc'
 
 function calcStats(vals: number[]) {
@@ -34,13 +34,12 @@ function calcStats(vals: number[]) {
 function downloadCSV(rows: DataRow[], indicator: string, unit: string, national: number | null) {
   const isPercent = unit === 'Percentage'
   const fmt = (v: number | null) => v == null ? '' : fmtNum(v)
-  const header = ['Region', 'Type', 'Province', indicator + (isPercent ? ' (%)' : ` (${unit})`), 'Sample Size (n)', 'vs National', '% of National']
+  const header = ['Region', 'Type', 'Province', indicator + (isPercent ? ' (%)' : ` (${unit})`), 'vs National']
   const lines = [
     header.join(','),
     ...rows.map(r => {
       const vsNat = r.value != null && national != null ? fmtNum(r.value - national) : ''
-      const pctNat = r.value != null && national != null && national > 0 ? fmtNum((r.value / national) * 100) : ''
-      return [JSON.stringify(r.name), r.type, r.province ?? '', fmt(r.value), fmt(r.sampleSize ?? null), vsNat, pctNat].join(',')
+      return [JSON.stringify(r.name), r.type, r.province ?? '', fmt(r.value), vsNat].join(',')
     }),
     [],
     [`Source: DHS Rwanda 2019-20`],
@@ -76,6 +75,12 @@ export default function DataTable({ rows, unit, indicator }: Props) {
   const national = useMemo(() => rows.find(r => r.type === 'national')?.value ?? null, [rows])
   const provinces = useMemo(() => [...new Set(rows.filter(r => r.type === 'province').map(r => r.name))], [rows])
 
+  const nationalLabel = useMemo(() => {
+    if (national == null) return 'vs National'
+    const val = isPercent ? `${fmtNum(national)}%` : fmtNum(national)
+    return `vs National (${val})`
+  }, [national, isPercent])
+
   const withRanks = useMemo(() => {
     const ranked = rows
       .filter(r => r.type !== 'national' && r.value != null)
@@ -86,7 +91,6 @@ export default function DataTable({ rows, unit, indicator }: Props) {
       ...r,
       rank: rankMap.get(r.name) ?? null,
       vsNational: r.value != null && national != null ? r.value - national : null,
-      pctNational: r.value != null && national != null && national > 0 ? (r.value / national) * 100 : null,
     }))
   }, [rows, national])
 
@@ -109,9 +113,7 @@ export default function DataTable({ rows, unit, indicator }: Props) {
         if (sortCol === 'type') return row.type
         if (sortCol === 'province') return row.province ?? ''
         if (sortCol === 'value') return row.value ?? -Infinity
-        if (sortCol === 'sampleSize') return row.sampleSize ?? -Infinity
         if (sortCol === 'vsNational') return row.vsNational ?? -Infinity
-        if (sortCol === 'pctNational') return row.pctNational ?? -Infinity
         return 0
       }
       const av = getVal(a)
@@ -137,7 +139,7 @@ export default function DataTable({ rows, unit, indicator }: Props) {
 
   const SortIcon = ({ col }: { col: SortCol }) => {
     if (sortCol !== col) return <ArrowUpDown className="h-3 w-3 opacity-30" />
-    return sortDir === 'asc' ? <ArrowUp className="h-3 w-3 text-rwanda-green" /> : <ArrowDown className="h-3 w-3 text-rwanda-green" />
+    return sortDir === 'asc' ? <ArrowUp className="h-3 w-3 text-nisr-navy" /> : <ArrowDown className="h-3 w-3 text-nisr-navy" />
   }
 
   const ThBtn = ({ col, label, className }: { col: SortCol; label: string; className?: string }) => (
@@ -157,18 +159,6 @@ export default function DataTable({ rows, unit, indicator }: Props) {
     if (type === 'national') return 'bg-red-50 text-red-700'
     if (type === 'province') return 'bg-blue-50 text-blue-700'
     return 'bg-slate-100 text-slate-600'
-  }
-
-  const quartile = (rank: number | null, total: number) => {
-    if (rank == null) return null
-    const q = Math.ceil((rank / total) * 4)
-    return Math.min(q, 4)
-  }
-  const qColor = (q: number | null) => {
-    if (q === 1) return 'text-green-700 bg-green-50'
-    if (q === 2) return 'text-blue-700 bg-blue-50'
-    if (q === 3) return 'text-amber-700 bg-amber-50'
-    return 'text-red-700 bg-red-50'
   }
 
   const dataTotal = filtered.filter(r => r.type !== 'national').length
@@ -191,6 +181,8 @@ export default function DataTable({ rows, unit, indicator }: Props) {
     return { groups, nationals }
   }, [groupByProvince, sorted])
 
+  const COLSPAN = 6
+
   return (
     <div className="flex flex-col gap-3">
       {/* Toolbar */}
@@ -199,17 +191,17 @@ export default function DataTable({ rows, unit, indicator }: Props) {
           <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400" />
           <input value={search} onChange={e => { setSearch(e.target.value); setPage(0) }}
             placeholder="Search region…"
-            className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-8 pr-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rwanda-green/30" />
+            className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-8 pr-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-nisr-navy/30" />
         </div>
         <button onClick={() => setShowFilters(f => !f)}
-          className={cn('flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm font-medium transition-colors', showFilters ? 'border-rwanda-green bg-green-50 text-rwanda-green' : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50')}>
+          className={cn('flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm font-medium transition-colors', showFilters ? 'border-nisr-navy bg-nisr-navy/5 text-nisr-navy' : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50')}>
           <Filter className="h-3.5 w-3.5" />Filters
           {(typeFilter.size < 3 || provinceFilter !== 'all') && (
-            <span className="ml-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-rwanda-green text-[10px] text-white">!</span>
+            <span className="ml-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-nisr-navy text-[10px] text-white">!</span>
           )}
         </button>
         <button onClick={() => setGroupByProvince(g => !g)}
-          className={cn('rounded-lg border px-3 py-2 text-sm font-medium transition-colors', groupByProvince ? 'border-rwanda-green bg-green-50 text-rwanda-green' : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50')}>
+          className={cn('rounded-lg border px-3 py-2 text-sm font-medium transition-colors', groupByProvince ? 'border-nisr-navy bg-nisr-navy/5 text-nisr-navy' : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50')}>
           Group by Province
         </button>
         <button onClick={() => downloadCSV(sorted, indicator, unit, national)}
@@ -232,7 +224,7 @@ export default function DataTable({ rows, unit, indicator }: Props) {
                       e.target.checked ? next.add(t) : next.delete(t)
                       if (next.size > 0) setTypeFilter(next)
                     }}
-                    className="rounded text-rwanda-green" />
+                    className="rounded text-nisr-navy" />
                   <span className="capitalize">{t}</span>
                 </label>
               ))}
@@ -242,7 +234,7 @@ export default function DataTable({ rows, unit, indicator }: Props) {
             <div>
               <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-slate-500">Province</p>
               <select value={provinceFilter} onChange={e => setProvinceFilter(e.target.value)}
-                className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-rwanda-green/30">
+                className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-nisr-navy/30">
                 <option value="all">All Provinces</option>
                 {provinces.map(p => <option key={p} value={p}>{p}</option>)}
               </select>
@@ -261,52 +253,35 @@ export default function DataTable({ rows, unit, indicator }: Props) {
               <th className="px-4 py-3 text-left"><ThBtn col="type" label="Type" /></th>
               <th className="px-4 py-3 text-left hidden md:table-cell"><ThBtn col="province" label="Province" /></th>
               <th className="px-4 py-3 text-right"><ThBtn col="value" label={indicator} className="justify-end" /></th>
-              <th className="px-4 py-3 text-right hidden lg:table-cell"><ThBtn col="sampleSize" label="n (sample)" className="justify-end" /></th>
-              <th className="px-4 py-3 text-right hidden lg:table-cell"><ThBtn col="vsNational" label="vs National" className="justify-end" /></th>
-              <th className="px-4 py-3 text-right hidden xl:table-cell"><ThBtn col="pctNational" label="% of National" className="justify-end" /></th>
-              <th className="px-4 py-3 text-center hidden xl:table-cell text-slate-600 text-xs font-semibold">Quartile</th>
+              <th className="px-4 py-3 text-right hidden lg:table-cell"><ThBtn col="vsNational" label={nationalLabel} className="justify-end" /></th>
             </tr>
           </thead>
           <tbody>
             {!groupByProvince ? (
               paged.length === 0 ? (
-                <tr><td colSpan={9} className="py-8 text-center text-sm text-slate-400">No data available</td></tr>
-              ) : paged.map((row, i) => {
-                const q = quartile(row.rank, dataTotal)
-                return (
-                  <tr key={i} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
-                    <td className="px-4 py-2.5 text-sm text-slate-500">
-                      {row.rank ? <span className="font-mono">{row.rank}</span> : <span className="text-slate-300">—</span>}
-                    </td>
-                    <td className="px-4 py-2.5 font-medium text-slate-800">{row.name}</td>
-                    <td className="px-4 py-2.5">
-                      <span className={cn('inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium', typeBadge(row.type))}>
-                        {row.type}
-                      </span>
-                    </td>
-                    <td className="px-4 py-2.5 text-slate-500 hidden md:table-cell text-sm">{row.province ?? '—'}</td>
-                    <td className="px-4 py-2.5 text-right font-semibold text-slate-800">
-                      {row.value != null ? fmt(row.value) : <span className="text-slate-400">N/A</span>}
-                    </td>
-                    <td className="px-4 py-2.5 text-right text-slate-500 hidden lg:table-cell">
-                      {row.sampleSize != null ? row.sampleSize.toLocaleString() : <span className="text-slate-300">—</span>}
-                    </td>
-                    <td className={cn('px-4 py-2.5 text-right font-medium hidden lg:table-cell', devColor(row.vsNational))}>
-                      {row.vsNational != null
-                        ? `${row.vsNational >= 0 ? '+' : ''}${isPercent ? `${fmtNum(row.vsNational)}%` : fmtNum(row.vsNational)}`
-                        : <span className="text-slate-300">—</span>}
-                    </td>
-                    <td className="px-4 py-2.5 text-right text-slate-600 hidden xl:table-cell">
-                      {row.pctNational != null ? `${fmtNum(row.pctNational)}%` : <span className="text-slate-300">—</span>}
-                    </td>
-                    <td className="px-4 py-2.5 text-center hidden xl:table-cell">
-                      {q && row.type !== 'national' ? (
-                        <span className={cn('inline-flex rounded-full px-2 py-0.5 text-[11px] font-semibold', qColor(q))}>Q{q}</span>
-                      ) : <span className="text-slate-300">—</span>}
-                    </td>
-                  </tr>
-                )
-              })
+                <tr><td colSpan={COLSPAN} className="py-8 text-center text-sm text-slate-400">No data available</td></tr>
+              ) : paged.map((row, i) => (
+                <tr key={i} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
+                  <td className="px-4 py-2.5 text-sm text-slate-500">
+                    {row.rank ? <span className="font-mono">{row.rank}</span> : <span className="text-slate-300">—</span>}
+                  </td>
+                  <td className="px-4 py-2.5 font-medium text-slate-800">{row.name}</td>
+                  <td className="px-4 py-2.5">
+                    <span className={cn('inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium', typeBadge(row.type))}>
+                      {row.type}
+                    </span>
+                  </td>
+                  <td className="px-4 py-2.5 text-slate-500 hidden md:table-cell text-sm">{row.province ?? '—'}</td>
+                  <td className="px-4 py-2.5 text-right font-semibold text-slate-800">
+                    {row.value != null ? fmt(row.value) : <span className="text-slate-400">N/A</span>}
+                  </td>
+                  <td className={cn('px-4 py-2.5 text-right font-medium hidden lg:table-cell', devColor(row.vsNational))}>
+                    {row.vsNational != null
+                      ? `${row.vsNational >= 0 ? '+' : ''}${isPercent ? `${fmtNum(row.vsNational)}%` : fmtNum(row.vsNational)}`
+                      : <span className="text-slate-300">—</span>}
+                  </td>
+                </tr>
+              ))
             ) : (
               groupedData && (
                 <>
@@ -319,10 +294,7 @@ export default function DataTable({ rows, unit, indicator }: Props) {
                       </td>
                       <td className="px-4 py-2.5 hidden md:table-cell" />
                       <td className="px-4 py-2.5 text-right font-semibold text-slate-800">{row.value != null ? fmt(row.value) : 'N/A'}</td>
-                      <td className="px-4 py-2.5 text-right hidden lg:table-cell text-slate-500">{row.sampleSize?.toLocaleString() ?? '—'}</td>
                       <td className="px-4 py-2.5 hidden lg:table-cell" />
-                      <td className="px-4 py-2.5 hidden xl:table-cell" />
-                      <td className="px-4 py-2.5 hidden xl:table-cell" />
                     </tr>
                   ))}
                   {Object.entries(groupedData.groups).map(([prov, provRows]) => {
@@ -331,7 +303,7 @@ export default function DataTable({ rows, unit, indicator }: Props) {
                       <>
                         <tr key={`grp-${prov}`} className="border-b border-slate-200 bg-slate-50 cursor-pointer hover:bg-slate-100 transition-colors"
                           onClick={() => setCollapsed(prev => { const n = new Set(prev); isCollapsed ? n.delete(prov) : n.add(prov); return n })}>
-                          <td className="px-4 py-2.5" colSpan={9}>
+                          <td className="px-4 py-2.5" colSpan={COLSPAN}>
                             <div className="flex items-center gap-2">
                               {isCollapsed ? <ChevronRight className="h-3.5 w-3.5 text-slate-500" /> : <ChevronDown className="h-3.5 w-3.5 text-slate-500" />}
                               <span className="font-semibold text-slate-700">{prov}</span>
@@ -339,34 +311,22 @@ export default function DataTable({ rows, unit, indicator }: Props) {
                             </div>
                           </td>
                         </tr>
-                        {!isCollapsed && provRows.map((row, i) => {
-                          const q = quartile(row.rank, dataTotal)
-                          return (
-                            <tr key={`row-${prov}-${i}`} className="border-b border-slate-50 bg-white hover:bg-slate-50/50 transition-colors">
-                              <td className="px-4 py-2.5 pl-10 text-slate-500">
-                                {row.rank ? <span className="font-mono">{row.rank}</span> : '—'}
-                              </td>
-                              <td className="px-4 py-2.5 font-medium text-slate-800 pl-10">{row.name}</td>
-                              <td className="px-4 py-2.5">
-                                <span className={cn('inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium', typeBadge(row.type))}>{row.type}</span>
-                              </td>
-                              <td className="px-4 py-2.5 text-slate-500 hidden md:table-cell text-sm">{row.province ?? '—'}</td>
-                              <td className="px-4 py-2.5 text-right font-semibold text-slate-800">{row.value != null ? fmt(row.value) : 'N/A'}</td>
-                              <td className="px-4 py-2.5 text-right hidden lg:table-cell text-slate-500">{row.sampleSize?.toLocaleString() ?? '—'}</td>
-                              <td className={cn('px-4 py-2.5 text-right font-medium hidden lg:table-cell', devColor(row.vsNational))}>
-                                {row.vsNational != null ? `${row.vsNational >= 0 ? '+' : ''}${isPercent ? `${fmtNum(row.vsNational)}%` : fmtNum(row.vsNational)}` : '—'}
-                              </td>
-                              <td className="px-4 py-2.5 text-right hidden xl:table-cell text-slate-600">
-                                {row.pctNational != null ? `${fmtNum(row.pctNational)}%` : '—'}
-                              </td>
-                              <td className="px-4 py-2.5 text-center hidden xl:table-cell">
-                                {q && row.type !== 'national' ? (
-                                  <span className={cn('inline-flex rounded-full px-2 py-0.5 text-[11px] font-semibold', qColor(q))}>Q{q}</span>
-                                ) : '—'}
-                              </td>
-                            </tr>
-                          )
-                        })}
+                        {!isCollapsed && provRows.map((row, i) => (
+                          <tr key={`row-${prov}-${i}`} className="border-b border-slate-50 bg-white hover:bg-slate-50/50 transition-colors">
+                            <td className="px-4 py-2.5 pl-10 text-slate-500">
+                              {row.rank ? <span className="font-mono">{row.rank}</span> : '—'}
+                            </td>
+                            <td className="px-4 py-2.5 font-medium text-slate-800 pl-10">{row.name}</td>
+                            <td className="px-4 py-2.5">
+                              <span className={cn('inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium', typeBadge(row.type))}>{row.type}</span>
+                            </td>
+                            <td className="px-4 py-2.5 text-slate-500 hidden md:table-cell text-sm">{row.province ?? '—'}</td>
+                            <td className="px-4 py-2.5 text-right font-semibold text-slate-800">{row.value != null ? fmt(row.value) : 'N/A'}</td>
+                            <td className={cn('px-4 py-2.5 text-right font-medium hidden lg:table-cell', devColor(row.vsNational))}>
+                              {row.vsNational != null ? `${row.vsNational >= 0 ? '+' : ''}${isPercent ? `${fmtNum(row.vsNational)}%` : fmtNum(row.vsNational)}` : '—'}
+                            </td>
+                          </tr>
+                        ))}
                       </>
                     )
                   })}
@@ -388,7 +348,7 @@ export default function DataTable({ rows, unit, indicator }: Props) {
                     <span>Median: <b>{isPercent ? `${fmtNum(stats.median)}%` : fmtNum(stats.median)}</b></span>
                   </div>
                 </td>
-                <td className="hidden lg:table-cell" colSpan={4} />
+                <td className="hidden lg:table-cell" />
               </tr>
             </tfoot>
           )}

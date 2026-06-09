@@ -101,29 +101,34 @@ export default function ChapterPageClient({ chapter, initialData }: Props) {
   const tableRows = useMemo((): DataRow[] => {
     const rows: DataRow[] = []
     const nat = firstSuccess?.national.value
-    if (nat != null) rows.push({ name: 'National', value: nat, type: 'national', sampleSize: firstSuccess?.national?.sample_size ?? null })
-
-    provinceData.forEach(p => {
-      const provQuery = queries.find((_, i) => PROVINCES[i].code === p.code)
-      const sampleSize = provQuery?.data?.provinces?.[0]?.sample_size ?? null
-      rows.push({ name: p.name, value: p.value, type: 'province', sampleSize })
-    })
 
     if (selectedProvince) {
+      // Province selected → show national + selected province + its districts only
+      if (nat != null) rows.push({ name: 'National', value: nat, type: 'national' })
       const provName = PROVINCES.find(p => p.code === selectedProvince)?.name ?? ''
+      const provEntry = provinceData.find(p => p.code === selectedProvince)
+      if (provEntry) {
+        rows.push({ name: provEntry.name, value: provEntry.value, type: 'province' })
+      }
       districtData.forEach(d => {
         rows.push({
           name: d.district_name,
           value: d.value,
           type: 'district',
-          sampleSize: d.sample_size ?? null,
           province: provName,
           provinceCode: selectedProvince,
         })
       })
+    } else {
+      // No province selected → national + all provinces
+      if (nat != null) rows.push({ name: 'National', value: nat, type: 'national' })
+      provinceData.forEach(p => {
+        rows.push({ name: p.name, value: p.value, type: 'province' })
+      })
     }
+
     return rows
-  }, [provinceData, districtData, firstSuccess, selectedProvince, queries])
+  }, [provinceData, districtData, firstSuccess, selectedProvince])
 
   const districtChartData = useMemo(() =>
     districtData.map((d, i) => ({
