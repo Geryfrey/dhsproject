@@ -7,3 +7,4 @@
 - [NISR color theme](nisr-colors.md) — NISR navy #1B3C74 replaces rwanda-green; cyan #0099D4 as accent; both aliased as rwanda-green/rwanda-green-light in tailwind for backward compat; logo at /public/nisr-logo.png.
 - [Django backend data labels](django-data-labels.md) — DB data_label strings don't match generic names; must use exact DB values in router defaults; chapter1 asset param needs ASSET_MAP lookup.
 - [API URL pattern](api-url-pattern.md) — NEXT_PUBLIC_API_URL=http://localhost:8000/api; server-side uses string concat not new URL() (leading slash in path would override base); client-side proxied via /api rewrite in next.config.ts.
+- [Django admin proxy](django-admin-proxy.md) — /admin-panel and /admin are proxied via Next.js catch-all route handlers (not rewrites); must always append trailing slash to backend URL because Replit's proxy strips slashes before Next.js sees them.

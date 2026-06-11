@@ -2,7 +2,8 @@ import type { NextConfig } from 'next'
 
 const replitDomain = process.env.REPLIT_DEV_DOMAIN
 const replitDomains = process.env.REPLIT_DOMAINS
-const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000'
+const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api'
+const backendUrl = apiUrl.replace(/\/api$/, '')
 
 const allowedOrigins: string[] = []
 if (replitDomain) allowedOrigins.push(replitDomain)
@@ -11,11 +12,12 @@ if (replitDomains) {
 }
 
 const nextConfig: NextConfig = {
+  skipTrailingSlashRedirect: true,
   async rewrites() {
     return [
       {
         source: '/api/:path*',
-        destination: `${apiUrl}/:path*`,
+        destination: `${backendUrl}/api/:path*`,
       },
     ]
   },

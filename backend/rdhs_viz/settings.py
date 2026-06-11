@@ -140,11 +140,35 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
+import os as _os
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5000",
     "http://127.0.0.1:5000",
 ]
+_replit_domain = _os.environ.get('REPLIT_DEV_DOMAIN', '')
+if _replit_domain:
+    CORS_ALLOWED_ORIGINS += [
+        f"https://{_replit_domain}",
+        f"http://{_replit_domain}",
+    ]
 CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5000",
+    "http://localhost:8000",
+    "http://127.0.0.1:5000",
+    "http://127.0.0.1:8000",
+]
+if _replit_domain:
+    CSRF_TRUSTED_ORIGINS += [
+        f"https://{_replit_domain}",
+        f"http://{_replit_domain}",
+    ]
+
+SESSION_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SECURE = False
 
 # Authentication
 LOGIN_URL = '/admin-panel/login/'
