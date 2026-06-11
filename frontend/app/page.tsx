@@ -118,7 +118,7 @@ export default function OverviewPage() {
                 Explore health, fertility, nutrition, and demographic indicators across Rwanda&apos;s five provinces and 30 districts. Select a chapter from the sidebar to dive into detailed analytics.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
-                {['10 Chapters', '50+ Indicators', '5 Provinces', '30 Districts'].map(tag => (
+                {['10 Chapters', '40 Indicators', '5 Provinces', '30 Districts'].map(tag => (
                   <span key={tag} className="rounded-full bg-white/15 px-3 py-1 text-xs font-medium border border-white/10">{tag}</span>
                 ))}
               </div>
