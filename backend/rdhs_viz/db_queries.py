@@ -37,6 +37,7 @@ def _fetch_values(indicator_id: int, year: int, data_label: str, province_name: 
         indicator_id=indicator_id,
         year=year,
         data_label=data_label,
+        district__level='district',          # exclude province-level and national-level rows
     ).select_related('district', 'district__province')
     if province_name is not None:
         qs = qs.filter(district__province__name=province_name)
