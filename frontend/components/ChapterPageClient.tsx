@@ -103,13 +103,9 @@ export default function ChapterPageClient({ chapter, initialData }: Props) {
     const nat = firstSuccess?.national.value
 
     if (selectedProvince) {
-      // Province selected → show national + selected province + its districts only
+      // Province selected → show national + its districts only (no province row)
       if (nat != null) rows.push({ name: 'National', value: nat, type: 'national' })
       const provName = PROVINCES.find(p => p.code === selectedProvince)?.name ?? ''
-      const provEntry = provinceData.find(p => p.code === selectedProvince)
-      if (provEntry) {
-        rows.push({ name: provEntry.name, value: provEntry.value, type: 'province' })
-      }
       districtData.forEach(d => {
         rows.push({
           name: d.district_name,
